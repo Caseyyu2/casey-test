@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
-import Cube from '../components/Cube';
-import style from './components/styles';
+import ColoredCube from '../container/ColoredCube';
+// import {style, getRandomColorsInRange} from '../components/styles';
+import ColorFiller from '../container/ColorFiller';
+import ColorFilter from '../container/ColorFilter'
+
 
 class App extends Component {
-  
   
   getCubes() {
     const rowStyle = {
@@ -21,9 +23,10 @@ class App extends Component {
     for (let i=0; i<3; i++){
         const columns=[];
         for (let j=0;j<3;j++){
-          columns.push(<Cube style={Object.assing(columnStyle, style.cubeStyle)}/>)
+          const cubeId = j + i;
+          columns.push(<ColoredCube key={j} cubeId={cubeId}/> )
         }
-      rows.push(<div style={columnStyle}>{columns}</div>)
+      rows.push(<div key={i}>{columns}</div>)
     }
     
     return (<div style={rowStyle}>
@@ -35,6 +38,9 @@ class App extends Component {
     return (
       <div>
           <Header />
+          <ColorFiller>Fill Color</ColorFiller>
+          <ColorFilter filterColorValue='yellow'>Yellow</ColorFilter>
+          <ColorFilter filterColorValue='blue'>Blue</ColorFilter>
           {this.getCubes()}
       </div>
     );
