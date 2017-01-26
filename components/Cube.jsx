@@ -1,18 +1,33 @@
 import React, {Component} from 'react'
-import {connect} from 'react-fela'
-import getStyle from './getStyle'
+import {connect as felaConnect} from 'react-fela'
+import { connect } from 'react-redux'
 
 
-class Cube extends Component {
+class InnerCube extends Component {
     render() {
         return <div className={this.props.styles}></div>
     }   
 }
 
-Cube.PropTypes = {
-    colorFilter: React.PropTypes.boolean
+function filterColorStyle(props) {
+    if (props.filteredColor && props.isFiltered) {
+        return props.filteredColor!== props.style.backgroundColor ? Object.assign(props.style, {background: "white"}) : props.style
+    }
+    
+    return props.style
 }
 
-const mapStylesToProps = props => renderer => renderer.renderRule(getStyle, props)
+InnerCube.PropTypes = {
+    isFiltered: React.PropTypes.boolean,
+    filteredColor: React.PropTypes.string
+}
 
-export default connect(mapStylesToProps)(Cube)
+const mapStateToProps = (state, ownProps) => ({
+    isFiltered: state.filterColor.isFiltered,
+    filteredColor: state.filterColor.colorValue
+})
+
+const mapStylesToProps = props => renderer => renderer.renderRule(filterColorStyle, props)
+const Cube = felaConnect(mapStylesToProps)(InnerCube)
+
+export default connect(mapStateToProps, null)(Cube)

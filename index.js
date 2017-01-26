@@ -10,9 +10,10 @@ import filterColor from './Reducers/filterReducer'
 import { combineReducers } from 'redux'
 
 
-const reducer = combineReducers({filterColor, fillColor})
+const reducer = combineReducers({filterColor: filterColor, fillColor: fillColor})
 
 const store=createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+console.log(store.getState())
 
 const renderer = createRenderer()
 const mountNode = document.getElementById('stylesheet')

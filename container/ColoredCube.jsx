@@ -4,7 +4,7 @@ import Cube from '../components/Cube'
 import {style, getRandomColorsInRange} from '../components/styles';
 
 const mapStateToProps = (state, ownProps) => ({
-    style: Object.assign({}, style.cubeStyle, (state && state[ownProps.cubeId]) ? {backgroundColor: state[ownProps.cubeId].color} : {backgroundColor: state.color})   
+    style: Object.assign({}, style.cubeStyle, (state && state.fillColor && state.fillColor[ownProps.cubeId]) ? {backgroundColor: state.fillColor[ownProps.cubeId].color} : {backgroundColor: state.fillColor.color})   
 })
 
 class InnerColoredCube extends Component {

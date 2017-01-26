@@ -17,4 +17,4 @@ function fillColor() {
     }
 }
 
-export default fillColor;
+export default fillColor

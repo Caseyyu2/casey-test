@@ -1,9 +1,12 @@
 import React from 'react'
+import { createComponent } from 'react-fela'
 
-const Header = () => (
-    <div>
-        <b>Welcome to Fela example working with React-Redux!</b>
-    </div>
-)
+ const header = props => ({
+     fontSize: "40px", 
+     color: "pink", 
+     fontFamily: "Lato"
+ })
+
+const Header = createComponent(header, 'b')
 
 export default Header;

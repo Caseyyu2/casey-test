@@ -3,9 +3,9 @@ const randomPickableColors = ['blue', 'yellow']
 const style = {
     //Feature or component style could be defined here
     cubeStyle: {
-        width: "40px",
-        height: "40px",
-        margin: "5px"
+        width: "60px",
+        height: "60px",
+        margin: "7px"
     }
 };
 

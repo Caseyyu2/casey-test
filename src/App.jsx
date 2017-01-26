@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../components/Header';
 import ColoredCube from '../container/ColoredCube';
-// import {style, getRandomColorsInRange} from '../components/styles';
-import ColorFiller from '../container/ColorFiller';
-import ColorFilter from '../container/ColorFilter'
+import ColorLink from '../container/ColorLink'
 
 
 class App extends Component {
@@ -11,7 +9,8 @@ class App extends Component {
   getCubes() {
     const rowStyle = {
         display: 'flex',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        padding: "50px"
       }
       
     const columnStyle = {
@@ -34,14 +33,38 @@ class App extends Component {
             </div>)
   }
   
+  getLinks() {
+    
+    const linkStyle = {
+        padding: "20px",
+        textDecoration: "none",
+        fontFamily: "Helvetica",
+        color: "black"
+    }
+    
+    return <div>
+            <ColorLink style={linkStyle}>Fill Color</ColorLink>
+            <ColorLink isFilterColor={true} filterColorValue='yellow' style={linkStyle}>Yellow</ColorLink>
+            <ColorLink isFilterColor={true} filterColorValue='blue' style={linkStyle}>Blue</ColorLink>
+          </div>
+  }
+  
   render() {
+    
+    const appContainerStyle = {
+      display: "flex",
+      flex: 1,
+      flexDirection: "column",
+      textAlign: "center",
+      alignItems: "center",
+      padding: "70px",
+    }
+    
     return (
-      <div>
-          <Header />
-          <ColorFiller>Fill Color</ColorFiller>
-          <ColorFilter filterColorValue='yellow'>Yellow</ColorFilter>
-          <ColorFilter filterColorValue='blue'>Blue</ColorFilter>
+      <div style={appContainerStyle}>
+          <Header>Welcome to Fela example working with React-Redux</Header>
           {this.getCubes()}
+          {this.getLinks()}
       </div>
     );
   }
